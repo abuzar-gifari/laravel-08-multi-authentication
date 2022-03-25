@@ -1,30 +1,27 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
+Route::get('/',[FrontendController::class,'index'])->name('frontend.index');
 
 // registration routes
 Route::get('registration',[LoginController::class,'registration'])->name('registration');
+Route::post('registration',[LoginController::class,'doRegistration']);
+
 //login routes
 Route::get('login',[LoginController::class,'login'])->name('login');
+Route::post('login',[LoginController::class,'doLogin']);
 
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
-
-Route::prefix('admin')->group(function(){
-    Route::get('dashboard',[AdminController::class,'index'])->name('admin.dashboard');
+Route::middleware('auth')->group(function(){
+    Route::prefix('admin')->group(function(){
+        Route::middleware('isAdmin')->group(function(){
+            Route::get('dashboard',[AdminController::class,'index'])->name('admin.dashboard');
+            Route::get('logout',[LoginController::class,'doLogout'])->name('logout');
+        });
+    });
 });

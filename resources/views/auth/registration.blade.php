@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,7 +15,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6 mt-5">
                 <h1>Registration Page</h1>
-                <form method="POST" enctype="multipart/form-data" action="">
+                <form method="POST" action="{{ route('registration') }}">
                     @csrf
                     <div class="mb-3">
                       <label for="name" class="form-label">Full Name</label>
@@ -24,7 +23,7 @@
                     </div>
                     <div class="mb-3">
                       <label for="email" class="form-label">Email Address</label>
-                      <input type="email" class="form-control" id="name" name="email">
+                      <input type="email" class="form-control" id="email" name="email">
                     </div>
                     <div class="mb-3">
                       <label for="phone" class="form-label">Phone Number</label>
@@ -34,6 +33,14 @@
                       <label for="password" class="form-label">Password</label>
                       <input type="password" class="form-control" id="password" name="password">
                     </div>
+                    <div class="mb-3">
+                      <label for="status" class="form-label h5">Registration as a:</label>
+                      <select name="role" id="role" class="form-control mt-2">
+                          <option value="Admin">Admin</option>
+                          <option value="Customer">Customer</option>
+                          <option value="Seller">Seller</option>
+                      </select>
+                  </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>

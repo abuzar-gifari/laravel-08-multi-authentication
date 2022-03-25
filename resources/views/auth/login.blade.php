@@ -16,7 +16,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6 mt-5">
                 <h1>Login Page</h1>
-                <form method="POST" enctype="multipart/form-data" action="">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('login') }}">
                     @csrf
                     <div class="mb-3">
                       <label for="email" class="form-label">Email Address</label>
