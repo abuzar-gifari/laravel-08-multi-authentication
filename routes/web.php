@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// registration routes
+Route::get('registration',[LoginController::class,'registration'])->name('registration');
+//login routes
+Route::get('login',[LoginController::class,'login'])->name('login');
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
+});
+
+Route::prefix('admin')->group(function(){
+    Route::get('dashboard',[AdminController::class,'index'])->name('admin.dashboard');
 });
